@@ -35,7 +35,7 @@ where f.`length`  >
   (select AVG(`length`) 
   from film);   
 ```
-![12-4-2](./hw-12-4/12-4-2.png
+![12-4-2](./hw-12-4/12-4-2.png)
 
 ---
 
@@ -51,7 +51,7 @@ from (
 order by t1.amount_of_payments desc  
 limit 1;
 ```
-![12-4-3](./12-4-3.png)
+![12-4-3](./hw-12-4/12-4-3.png)
 
 ---
 
