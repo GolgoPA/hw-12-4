@@ -61,7 +61,28 @@ limit 1;
 ### Задание 4*
 
 Посчитайте количество продаж, выполненных каждым продавцом. Добавьте вычисляемую колонку «Премия». Если количество продаж превышает 8000, то значение в колонке будет «Да», иначе должно быть значение «Нет».
+```sql
+select t1.cp count_of_payments, t1.staff_id staff_id,
+  case 
+  	when t1.cp > 8000 then 'Да'
+  	else 'Нет'
+  end as bonus
+from (
+  select COUNT(payment_id) cp, staff_id  
+  from sakila.payment p 
+  group by staff_id ) t1;
+```
+![12-4-4](./hw-12-4/12-4-4.png)
+
+---
 
 ### Задание 5*
 
 Найдите фильмы, которые ни разу не брали в аренду.
+```sql
+select f.title  from sakila.rental r
+right join sakila.inventory i on i.inventory_id = r.inventory_id  
+right join sakila.film f  on f.film_id = i.film_id 
+where  r.rental_id is null;
+```
+![12-4-5](./hw-12-4/12-4-5.png)
