@@ -28,11 +28,32 @@ having COUNT(c.customer_id) > 300;
 ### Задание 2
 
 Получите количество фильмов, продолжительность которых больше средней продолжительности всех фильмов.
+```sql
+select COUNT(f.title)
+from film f  
+where f.`length`  >
+  (select AVG(`length`) 
+  from film);   
+```
+![12-4-2](./hw-12-4/12-4-2.png
+
+---
 
 ### Задание 3
 
 Получите информацию, за какой месяц была получена наибольшая сумма платежей, и добавьте информацию по количеству аренд за этот месяц.
+```sql
+select t1.amount_of_payments, t1.month_of_payments
+from (
+  select SUM(p.amount) amount_of_payments, MONTH(p.payment_date) month_of_payments
+  from sakila.payment p 
+  group by month(p.payment_date)) t1
+order by t1.amount_of_payments desc  
+limit 1;
+```
+![12-4-3](./12-4-3.png)
 
+---
 
 ## Дополнительные задания (со звёздочкой*)
 Эти задания дополнительные, то есть не обязательные к выполнению, и никак не повлияют на получение вами зачёта по этому домашнему заданию. Вы можете их выполнить, если хотите глубже шире разобраться в материале.
